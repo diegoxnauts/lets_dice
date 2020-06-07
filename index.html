@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/dice.svg" />
+
+    <title>Let's Dice</title>
+  </head>
+
+  <body>
+    <div class="logo">
+      <img class="dice-logo" src="img/dice.svg" alt="dice-logo" />
+      <img class="text-logo" src="img/text-logo.svg" alt="text-logo" />
+    </div>
+
+    <div class="wrapper main-game">
+      <div class="player-0-panel active">
+        <div class="player-name" id="name-0">Player 1</div>
+        <div class="player-score" id="score-0">43</div>
+        <div class="player-current-box">
+          <div class="player-current-label">Round Score</div>
+          <div class="player-current-score" id="current-0">11</div>
+        </div>
+      </div>
+
+      <div class="player-1-panel">
+        <div class="player-name" id="name-1">Player 2</div>
+        <div class="player-score" id="score-1">72</div>
+        <div class="player-current-box">
+          <div class="player-current-label">Round Score</div>
+          <div class="player-current-score" id="current-1">0</div>
+        </div>
+      </div>
+
+      <button class="btn-settings"><i class="ion-ios-gear-outline"></i></button>
+      <button class="btn-new">
+        <i class="ion-ios-plus-outline"></i>New game
+      </button>
+      <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+      <button class="btn-hold">
+        <i class="ion-ios-download-outline"></i>End Turn
+      </button>
+      <!-- <div class="prev-roll">Prev Dice Roll:<span>0</span></div> -->
+
+      <img src="img/dice-5.png" alt="Dice" class="dice" />
+    </div>
+
+    <div class="wrapper settings">
+      <h1><i class="ion-ios-gear-outline"></i> Options</h1>
+      <div class="name-settings">
+        <div class="input-control">
+          <label for="player-1">Player 1 Name</label>
+          <input
+            id="player-1"
+            name="player-1"
+            type="text"
+            placeholder="Player 1"
+          />
+        </div>
+        <div class="input-control">
+          <label for="player-2">Player 2 Name</label>
+          <input
+            id="player-2"
+            name="player-2"
+            type="text"
+            placeholder="Player 2"
+          />
+        </div>
+      </div>
+      <div class="game-settings">
+        <div class="input-control">
+          <label for="winning-score">Winning Score</label>
+          <input type="text" default="100" placeholder="100" />
+        </div>
+        <div class="input-control">
+          <label for="dice-number">No. of Dice</label>
+          <div class="custom-dropdown-wrapper">
+            <div class="custom-trigger">
+              <span class="dice-number">1</span>
+              <div class="arrow"></div>
+            </div>
+            <div class="custom-options">
+              <span class="custom-option selected" data-value="1">1</span>
+              <span class="custom-option" data-value="2">2</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-control">
+          <label>Difficulty Mode</label>
+          <div>
+            <input type="radio" id="normal" name="difficulty" value="normal" />
+            <label for="normal"><span></span><span></span>Normal</label>
+          </div>
+          <!-- roll a 1 -->
+
+          <div>
+            <input type="radio" id="hard" name="difficulty" value="hard" />
+            <label for="hard"><span></span><span></span>Hard</label>
+          </div>
+          <!-- Consecutive 6 -->
+
+          <div>
+            <input
+              type="radio"
+              id="extreme"
+              name="difficulty"
+              value="extreme"
+            />
+            <label for="extreme"><span></span><span></span>Extreme</label>
+          </div>
+
+          <!-- Any Consecutive and Timer -->
+        </div>
+      </div>
+      <button class="btn-save">Save</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

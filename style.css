@@ -1,0 +1,366 @@
+/**********************************************
+*** GENERAL
+**********************************************/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  font-family: Lato;
+  font-weight: 300;
+  position: relative;
+  min-height: 100vh;
+  background: #080d18;
+  color: #ffffff;
+}
+
+.wrapper {
+  position: relative;
+  width: 1000px;
+  margin: 50px auto;
+  background-color: #0d1426;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid #19233e;
+}
+
+.main-game {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.player-0-panel,
+.player-1-panel {
+  min-height: 600px;
+  padding: 100px;
+}
+
+h1 {
+  text-transform: uppercase;
+  margin: 20px;
+}
+
+/**********************************************
+*** LOGO
+**********************************************/
+
+.logo {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.logo .dice-logo {
+  width: 65px;
+  margin-right: 5px;
+}
+
+.logo .text-logo {
+  width: 80px;
+}
+
+/**********************************************
+*** PLAYERS
+**********************************************/
+
+.player-name {
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 100;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.player-score {
+  text-align: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: #737eed;
+  margin-bottom: 130px;
+}
+
+.active {
+  background-color: #121c35;
+}
+.active .player-name {
+  font-weight: 300;
+}
+
+.active .player-name::after {
+  content: "\2022";
+  font-size: 47px;
+  position: absolute;
+  color: #737eed;
+  top: -7px;
+  right: 10px;
+}
+
+.player-current-box {
+  background-color: #737eed;
+  color: #fff;
+  width: 40%;
+  margin: 0 auto;
+  padding: 12px;
+  text-align: center;
+}
+
+.player-current-label {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #222;
+}
+
+.player-current-score {
+  font-size: 30px;
+}
+
+button {
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #7886a1;
+  background: none;
+  border: none;
+  font-family: Lato;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 300;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  font-weight: 600;
+}
+button:hover i {
+  margin-right: 20px;
+}
+
+button:focus {
+  outline: none;
+}
+
+i {
+  color: #737eed;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 32px;
+  line-height: 1;
+  vertical-align: text-top;
+  margin-top: -4px;
+  transition: margin 0.3s;
+}
+
+.btn-settings {
+  top: 45px;
+  left: auto;
+  right: 0px;
+  width: 100px;
+  transform: translateX(0);
+}
+
+.btn-new {
+  top: 45px;
+}
+.btn-roll {
+  top: 403px;
+}
+.btn-hold {
+  top: 467px;
+}
+
+.dice {
+  position: absolute;
+  left: 50%;
+  top: 178px;
+  border-radius: 5px;
+  transform: translateX(-50%);
+  height: 100px;
+  box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1);
+}
+
+.winner {
+  background-color: #f7f7f7;
+}
+.winner .player-name {
+  font-weight: 300;
+  color: #eb4d4d;
+}
+
+/**********************************************
+*** SETTINGS
+**********************************************/
+
+label {
+  text-transform: uppercase;
+  display: block;
+  margin: 0 0 10px 0;
+}
+
+input[type="radio"] + label {
+  display: inline-block;
+}
+
+.settings {
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  /* display: none; */
+}
+
+.settings i {
+  padding: 10px 0;
+}
+
+.settings h1 {
+  text-align: center;
+  grid-column: 1/-1;
+}
+
+.name-settings,
+.game-settings {
+  padding: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.game-settings {
+  border-left: 1px solid black;
+}
+
+.input-control {
+  margin: 50px 20px;
+}
+
+.name-settings .input-control,
+.game-settings .input-control:nth-last-of-type(1) {
+  flex: 1 0 100%;
+}
+
+.game-settings .input-control:not(:nth-last-of-type(1)) {
+  flex-basis: calc((100% - 80px) / 2);
+}
+
+input[type="text"] {
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+  background: #080d18;
+  color: #fff;
+  border: 1px solid #737eed;
+}
+
+.name-settings input[type="text"] {
+  width: calc(100% - 40px);
+}
+
+.game-settings input[type="text"] {
+  width: 100%;
+}
+
+.custom-dropdown-wrapper {
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.custom-trigger {
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #080d18;
+  color: #fff;
+  border: 1px solid #737eed;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-trigger .dice-number {
+  padding: 10px;
+}
+
+.custom-trigger .arrow {
+  padding: 10px 15px;
+  background: #737eed;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+}
+
+.custom-trigger .arrow::before,
+.custom-trigger .arrow::after {
+  content: "";
+  height: 13px;
+  width: 2px;
+  transition: all 0.5s;
+  position: absolute;
+}
+
+.custom-trigger .arrow::before {
+  right: 10px;
+  top: 12px;
+  transform: rotate(45deg);
+  background: #fff;
+}
+
+.custom-trigger .arrow::after {
+  right: 18px;
+  top: 12px;
+  transform: rotate(-45deg);
+  background: #fff;
+}
+
+.custom-options {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #080d18;
+  border-radius: 0 0 10px 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.custom-options span {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.custom-options span:nth-last-of-type(1) {
+  border-radius: 0 0 10px 10px;
+}
+
+.custom-options span:hover {
+  background: #737eed;
+}
+
+.custom-options.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-save {
+  margin: 20px auto;
+  position: static;
+  display: block;
+  background: #737eed;
+  transform: translateX(0);
+  color: #fff;
+  bottom: 20px;
+  padding: 5px;
+  grid-column: 1/-1;
+}

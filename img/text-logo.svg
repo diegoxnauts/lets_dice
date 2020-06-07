@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="142" height="106" viewBox="0 0 142 106">
+  <g id="text-logo" transform="translate(-1423 -1360)">
+    <g id="Group_4" data-name="Group 4" transform="translate(666 1318)">
+      <text id="LET_S" data-name="LET’S" transform="translate(789 81)" fill="#fff" stroke="#000" stroke-width="2" font-size="40" font-family="Seravek-Bold, Seravek" font-weight="700"><tspan x="0" y="0">LET’S</tspan></text>
+      <text id="DICE" transform="translate(789 131)" fill="#fff" stroke="#000" stroke-width="2" font-size="50" font-family="Seravek-Bold, Seravek" font-weight="700"><tspan x="0" y="0">DICE</tspan></text>
+    </g>
+    <g id="Rectangle_14" data-name="Rectangle 14" transform="translate(1423 1367)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="7" height="97" stroke="none"/>
+      <rect x="1" y="1" width="5" height="95" fill="none"/>
+    </g>
+  </g>
+</svg>
