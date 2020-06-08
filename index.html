@@ -65,6 +65,7 @@
           <input
             id="player-1"
             name="player-1"
+            value="Player 1"
             type="text"
             placeholder="Player 1"
           />
@@ -74,6 +75,7 @@
           <input
             id="player-2"
             name="player-2"
+            value="Player 2"
             type="text"
             placeholder="Player 2"
           />
@@ -82,7 +84,12 @@
       <div class="game-settings">
         <div class="input-control">
           <label for="winning-score">Winning Score</label>
-          <input type="text" default="100" placeholder="100" />
+          <input
+            type="text"
+            value="100"
+            placeholder="100"
+            oninput="this.value = numerize(this.value)"
+          />
         </div>
         <div class="input-control">
           <label for="dice-number">No. of Dice</label>
@@ -99,26 +106,32 @@
         </div>
         <div class="input-control">
           <label>Difficulty Mode</label>
-          <div>
-            <input type="radio" id="normal" name="difficulty" value="normal" />
-            <label for="normal"><span></span><span></span>Normal</label>
+          <div class="custom-radio">
+            <input
+              type="radio"
+              id="normal"
+              name="difficulty"
+              value="normal"
+              checked
+            />
+            <label for="normal"><span class="radio"></span>Normal</label>
           </div>
           <!-- roll a 1 -->
 
-          <div>
+          <div class="custom-radio">
             <input type="radio" id="hard" name="difficulty" value="hard" />
-            <label for="hard"><span></span><span></span>Hard</label>
+            <label for="hard"><span class="radio"></span>Hard</label>
           </div>
           <!-- Consecutive 6 -->
 
-          <div>
+          <div class="custom-radio">
             <input
               type="radio"
               id="extreme"
               name="difficulty"
               value="extreme"
             />
-            <label for="extreme"><span></span><span></span>Extreme</label>
+            <label for="extreme"><span class="radio"></span>Extreme</label>
           </div>
 
           <!-- Any Consecutive and Timer -->

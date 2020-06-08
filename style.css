@@ -236,7 +236,7 @@ input[type="radio"] + label {
 }
 
 .game-settings {
-  border-left: 1px solid black;
+  border-left: 1px solid #19233e;
 }
 
 .input-control {
@@ -345,12 +345,61 @@ input[type="text"] {
 }
 
 .custom-options span:hover {
+  background: #121c35;
+}
+
+.custom-options span:active {
   background: #737eed;
 }
 
 .custom-options.open {
   opacity: 1;
   visibility: visible;
+}
+
+.custom-radio {
+  position: relative;
+  padding-left: 35px;
+  margin: 12px 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the default radio button */
+.custom-radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.custom-radio .radio {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #080d18;
+  border: 1px solid #737eed;
+}
+
+.custom-radio label:hover .radio {
+  background: #121c35;
+}
+
+.custom-radio input[type="radio"]:checked ~ label .radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: #737eed;
 }
 
 .btn-save {

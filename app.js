@@ -111,8 +111,26 @@ function setScores(selector, value) {
 
 // Settings
 
+function numerize(value) {
+  return value.replace(/[^0-9]/g, "").replace(/(.*)/g, "$1");
+}
+
 document
   .querySelector(".custom-dropdown-wrapper")
   .addEventListener("click", function () {
     this.querySelector(".custom-options").classList.toggle("open");
   });
+
+for (const option of document.querySelectorAll(".custom-option")) {
+  option.addEventListener("click", function () {
+    if (!this.classList.contains("selected")) {
+      this.parentNode
+        .querySelector(".custom-option.selected")
+        .classList.remove("selected");
+      this.classList.add("selected");
+      this.closest(".custom-dropdown-wrapper").querySelector(
+        ".custom-trigger span"
+      ).textContent = this.textContent;
+    }
+  });
+}
