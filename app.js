@@ -25,32 +25,55 @@ score when one of them is a 1.
 - Beautify with animation using anime.js
 */
 
-var scores, roundScore, activePlayer, dice, isGamePlaying, prevDice;
+let scores, roundScore, activePlayer, isGamePlaying, prevDice;
+
+let settings = {
+  playerName1: "Player 1",
+  playerName2: "Player 2",
+  winningScore: 100,
+  noOfDice: 1,
+  difficulty: "Normal",
+};
 
 newGame();
 
 document.querySelector(".btn-roll").addEventListener("click", function () {
   if (isGamePlaying) {
-    setScores(`.prev-roll span`, prevDice);
-    // Generate a random number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    // Generate a random number for respective dice
+    let diceScores = [...Array(settings.noOfDice)].map((x) => 0);
+    for (let i = 0; i < diceScores.length; i++) {
+      diceScores[i] = Math.floor(Math.random() * 6) + 1;
+    }
 
     // Display the result
-    var diceElement = document.querySelector(".dice");
-    diceElement.style.display = "block";
-    diceElement.src = `img/dice-${dice}.png`;
+    let dices = document.querySelectorAll(".dice:not(.hidden)");
 
-    // Update the round score if the number was not a 1.
-    if (dice !== 1) {
-      // check if player rolled a two consecutive 6s
-      if (dice === 6 && dice === prevDice) {
+    for (let i = 0; i < diceScores.length; i++) {
+      dices[i].src = `img/dice-${diceScores[i]}.png`;
+    }
+
+    // Update the round score if all dices didn't roll any 1s.
+    if (!diceScores.includes(1)) {
+      // check if player rolled same score 2 in a row (1 dice) OR dice scores are not the same (2 or more dice) (hard mode)
+      if (
+        ((diceScores[0] === prevDice && diceScores.length === 1) ||
+          (ifAllSameRoll(diceScores) && diceScores.length > 1)) &&
+        settings.difficulty === "hard"
+      ) {
         scores[activePlayer] = 0;
         setScores(`#score-${activePlayer}`, scores[activePlayer]);
         endTurn();
       }
-      roundScore += dice;
+
+      roundScore += diceScores.reduce(
+        (accumulator, currentVal) => accumulator + currentVal,
+        0
+      );
       setScores(`#current-${activePlayer}`, roundScore);
-      prevDice = dice;
+      prevDice = diceScores.reduce(
+        (accumulator, currentVal) => accumulator + currentVal,
+        0
+      );
     } else {
       endTurn();
     }
@@ -66,7 +89,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     setScores(`#score-${activePlayer}`, scores[activePlayer]);
 
     // Check if the score reached 100
-    if (scores[activePlayer] >= 50) {
+    if (scores[activePlayer] >= settings.winningScore) {
       alert(`Player ${activePlayer + 1} Wins!`);
       isGamePlaying = false;
     } else {
@@ -83,12 +106,30 @@ function newGame() {
   activePlayer = 0;
   isGamePlaying = true;
   prevDice = 0;
-  document.querySelector(".dice").style.display = "none";
+
+  // displaying how many dices should be shown
+  const dices = document.querySelectorAll(".dice");
+  let activeDices = dices.length;
+
+  for (const dice of dices) {
+    dice.classList.remove("hidden");
+  }
+
+  for (const dice of dices) {
+    if (activeDices !== settings.noOfDice) {
+      dice.classList.add("hidden");
+      activeDices -= 1;
+    }
+  }
+
   setScores(".player-score, .player-current-score", 0);
 
   document.querySelector(".player-1-panel").classList.remove("active");
   document.querySelector(".player-1-panel").classList.remove("active");
   document.querySelector(".player-0-panel").classList.add("active");
+
+  document.querySelector("#name-0").textContent = settings.playerName1;
+  document.querySelector("#name-1").textContent = settings.playerName2;
 }
 
 // document.querySelector.apply(".btn-settings");
@@ -103,17 +144,22 @@ function endTurn() {
 }
 
 function setScores(selector, value) {
-  var elements = document.querySelectorAll(selector);
-  for (var i = 0; i < elements.length; i++) {
+  let elements = document.querySelectorAll(selector);
+  for (let i = 0; i < elements.length; i++) {
     elements[i].textContent = `${value}`;
   }
 }
 
-// Settings
-
-function numerize(value) {
-  return value.replace(/[^0-9]/g, "").replace(/(.*)/g, "$1");
+function ifAllSameRoll(diceScores) {
+  for (let i = 0; i < diceScores.length; i++) {
+    if (diceScores[0] !== diceScores[i]) {
+      return false;
+    }
+  }
+  return true;
 }
+
+// Settings input functions
 
 document
   .querySelector(".custom-dropdown-wrapper")
@@ -133,4 +179,33 @@ for (const option of document.querySelectorAll(".custom-option")) {
       ).textContent = this.textContent;
     }
   });
+}
+
+function numerize(value) {
+  return value.replace(/[^0-9]/g, "").replace(/(.*)/g, "$1");
+}
+
+// Settings retrieveing data
+
+document.querySelector(".btn-save").addEventListener("click", saveSettings);
+
+function saveSettings() {
+  settings.playerName1 = document.querySelector("#player-1").value;
+  settings.playerName2 = document.querySelector("#player-2").value;
+  settings.winningScore = parseInt(
+    document.querySelector("#winning-score").value
+  );
+  settings.noOfDice = parseInt(
+    document.querySelector(".custom-dropdown-wrapper .dice-number").textContent
+  );
+  settings.difficulty = document.querySelector(
+    ".custom-radio input[type='radio']:checked"
+  ).value;
+
+  // move display game page
+
+  // restart the game
+  newGame();
+
+  console.log("Settings Saved");
 }

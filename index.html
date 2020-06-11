@@ -52,9 +52,11 @@
       <button class="btn-hold">
         <i class="ion-ios-download-outline"></i>End Turn
       </button>
-      <!-- <div class="prev-roll">Prev Dice Roll:<span>0</span></div> -->
 
-      <img src="img/dice-5.png" alt="Dice" class="dice" />
+      <div class="dice-container">
+        <img id="dice-1" src="img/dice-5.png" alt="Dice" class="dice" />
+        <img id="dice-2" src="img/dice-5.png" alt="Dice" class="dice" />
+      </div>
     </div>
 
     <div class="wrapper settings">
@@ -85,6 +87,7 @@
         <div class="input-control">
           <label for="winning-score">Winning Score</label>
           <input
+            id="winning-score"
             type="text"
             value="100"
             placeholder="100"
@@ -130,8 +133,10 @@
               id="extreme"
               name="difficulty"
               value="extreme"
+              disabled
             />
             <label for="extreme"><span class="radio"></span>Extreme</label>
+            <small><em>Coming Soon</em></small>
           </div>
 
           <!-- Any Consecutive and Timer -->
