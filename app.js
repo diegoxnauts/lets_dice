@@ -95,8 +95,8 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         .classList.add("winner");
       isGamePlaying = false;
       activePlayer === 0
-        ? alert(`Player ${settings.playerName1} Wins!`)
-        : alert(`Player ${settings.playerName2} Wins!`);
+        ? alert(`${settings.playerName1} Wins!`)
+        : alert(`${settings.playerName2} Wins!`);
     } else {
       endTurn();
     }
