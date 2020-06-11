@@ -90,8 +90,13 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
 
     // Check if the score reached 100
     if (scores[activePlayer] >= settings.winningScore) {
-      alert(`Player ${activePlayer + 1} Wins!`);
+      document
+        .querySelector(`.player-${activePlayer}-panel`)
+        .classList.add("winner");
       isGamePlaying = false;
+      activePlayer === 0
+        ? alert(`Player ${settings.playerName1} Wins!`)
+        : alert(`Player ${settings.playerName2} Wins!`);
     } else {
       endTurn();
     }
@@ -124,8 +129,10 @@ function newGame() {
 
   setScores(".player-score, .player-current-score", 0);
 
+  document.querySelector(".player-0-panel").classList.remove("active");
   document.querySelector(".player-1-panel").classList.remove("active");
-  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
   document.querySelector(".player-0-panel").classList.add("active");
 
   document.querySelector("#name-0").textContent = settings.playerName1;

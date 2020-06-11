@@ -67,6 +67,28 @@ h1 {
 *** PLAYERS
 **********************************************/
 
+.winner-crown,
+.winner-banner {
+  text-align: center;
+  opacity: 0;
+}
+
+.winner .winner-crown,
+.winner .winner-banner {
+  opacity: 1;
+}
+
+.winner-crown img {
+  max-width: 40px;
+  width: 100%;
+}
+
+.winner-banner img {
+  max-width: 250px;
+  width: 100%;
+  margin: 25px 0 50px 0;
+}
+
 .player-name {
   font-size: 40px;
   text-align: center;
@@ -83,7 +105,6 @@ h1 {
   font-size: 80px;
   font-weight: 100;
   color: #737eed;
-  margin-bottom: 130px;
 }
 
 .active {
@@ -97,7 +118,7 @@ h1 {
   content: "\2022";
   font-size: 47px;
   position: absolute;
-  color: #737eed;
+  color: red;
   top: -7px;
   right: 10px;
 }
@@ -199,12 +220,9 @@ i {
   display: none;
 }
 
-.winner {
-  background-color: #f7f7f7;
-}
 .winner .player-name {
   font-weight: 300;
-  color: #eb4d4d;
+  color: #ffc800;
 }
 
 /**********************************************
