@@ -45,6 +45,15 @@ h1 {
   margin: 20px;
 }
 
+ul {
+  list-style-type: square;
+  padding: 10px;
+}
+
+li {
+  margin: 10px;
+}
+
 /**********************************************
 *** LOGO
 **********************************************/
@@ -61,6 +70,10 @@ h1 {
 
 .logo .text-logo {
   width: 80px;
+}
+
+.wrapper.hide {
+  display: none;
 }
 
 /**********************************************
@@ -245,7 +258,6 @@ input[type="radio"] + label {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr auto;
-  /* display: none; */
 }
 
 .settings i {
@@ -447,4 +459,20 @@ input[type="text"] {
   bottom: 20px;
   padding: 5px;
   grid-column: 1/-1;
+}
+
+/**********************************************
+*** INSTRUCTIONS
+**********************************************/
+
+.instructions {
+  color: #778899;
+  padding: 15px;
+  background: #080d18;
+  border: none;
+}
+.instructions h3 {
+  margin: 20px;
+  text-transform: uppercase;
+  text-align: center;
 }

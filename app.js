@@ -1,28 +1,23 @@
 /*
 GAME RULES:
 
+Difficulty Easy:
+
 - The game has 2 players, playing in rounds
 - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
 - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
-- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
+- The player can choose to 'Hold', which means that his ROUND score gets added to his GLOBAL score. After that, it's the next player's turn
+- The first player to reach winning points on GLOBAL score wins the game
 
-// Challenges
-1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, its the next player's
-turn. (DONE!)
-2. Add an input field to the HTML where players can set the winning score, so that they can change 
-the predefined score of 100. 
-3. Add another dice to the game, so that there are two dices now. The player looses his current 
-score when one of them is a 1.
+Difficulty Hard:
+- (1 dice) If the player rolls the same score back to back he looses his ENTIRE SCORE. Afterwhich, its the next player's trun.
+- (2 dice) If the player rolls a double he looses his ENTIRE SCORE. Afterwhich, its the next player's turn
 
 
-// ADVANCED FEATURES
+// FUTURE PLANNED FEATURES
 - Add a timer for each turn. When it expires player will be penalized and be deducted of 20 points
 - Add dice animation and damage / text that states the most recent event in the game
-- Custom name support (settings functionality)
-- Customize UI :)
-- Show point difference
-- Beautify with animation using anime.js
+- Maybe add a 
 */
 
 let scores, roundScore, activePlayer, isGamePlaying, prevDice;
@@ -94,9 +89,6 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         .querySelector(`.player-${activePlayer}-panel`)
         .classList.add("winner");
       isGamePlaying = false;
-      activePlayer === 0
-        ? alert(`${settings.playerName1} Wins!`)
-        : alert(`${settings.playerName2} Wins!`);
     } else {
       endTurn();
     }
@@ -104,6 +96,33 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
 });
 
 document.querySelector(".btn-new").addEventListener("click", newGame);
+
+document.querySelector(".btn-settings").addEventListener("click", function () {
+  document.querySelector(".settings").classList.toggle("hide");
+  document.querySelector(".main-game").classList.toggle("hide");
+});
+
+document
+  .querySelector(".custom-dropdown-wrapper")
+  .addEventListener("click", function () {
+    this.querySelector(".custom-options").classList.toggle("open");
+  });
+
+for (const option of document.querySelectorAll(".custom-option")) {
+  option.addEventListener("click", function () {
+    if (!this.classList.contains("selected")) {
+      this.parentNode
+        .querySelector(".custom-option.selected")
+        .classList.remove("selected");
+      this.classList.add("selected");
+      this.closest(".custom-dropdown-wrapper").querySelector(
+        ".custom-trigger span"
+      ).textContent = this.textContent;
+    }
+  });
+}
+
+document.querySelector(".btn-save").addEventListener("click", saveSettings);
 
 function newGame() {
   scores = [0, 0];
@@ -166,35 +185,9 @@ function ifAllSameRoll(diceScores) {
   return true;
 }
 
-// Settings input functions
-
-document
-  .querySelector(".custom-dropdown-wrapper")
-  .addEventListener("click", function () {
-    this.querySelector(".custom-options").classList.toggle("open");
-  });
-
-for (const option of document.querySelectorAll(".custom-option")) {
-  option.addEventListener("click", function () {
-    if (!this.classList.contains("selected")) {
-      this.parentNode
-        .querySelector(".custom-option.selected")
-        .classList.remove("selected");
-      this.classList.add("selected");
-      this.closest(".custom-dropdown-wrapper").querySelector(
-        ".custom-trigger span"
-      ).textContent = this.textContent;
-    }
-  });
-}
-
 function numerize(value) {
   return value.replace(/[^0-9]/g, "").replace(/(.*)/g, "$1");
 }
-
-// Settings retrieveing data
-
-document.querySelector(".btn-save").addEventListener("click", saveSettings);
 
 function saveSettings() {
   settings.playerName1 = document.querySelector("#player-1").value;
@@ -209,7 +202,8 @@ function saveSettings() {
     ".custom-radio input[type='radio']:checked"
   ).value;
 
-  // move display game page
+  document.querySelector(".settings").classList.toggle("hide");
+  document.querySelector(".main-game").classList.toggle("hide");
 
   // restart the game
   newGame();

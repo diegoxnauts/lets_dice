@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div class="wrapper settings">
+    <div class="wrapper settings hide">
       <h1><i class="ion-ios-gear-outline"></i> Options</h1>
       <div class="name-settings">
         <div class="input-control">
@@ -155,6 +155,40 @@
         </div>
       </div>
       <button class="btn-save">Save</button>
+    </div>
+
+    <div class="wrapper instructions">
+      <h3>Game Rules</h3>
+      Difficulty Easy:
+      <ul>
+        <li>The game has 2 players, playing in rounds</li>
+        <li>
+          In each turn, a player rolls a dice as many times as he whishes. Each
+          result get added to his ROUND score
+        </li>
+        <li>
+          BUT, if the player rolls a 1, all his ROUND score gets lost. After
+          that, it's the next player's turn
+        </li>
+        <li>
+          The player can choose to 'Hold', which means that his ROUND score gets
+          added to his GLOBAL score. After that, it's the next player's turn
+        </li>
+        <li>
+          The first player to reach winning points on GLOBAL score wins the game
+        </li>
+      </ul>
+      Difficulty Hard:
+      <ul>
+        <li>
+          (1 dice) If the player rolls the same score back to back he looses his
+          ENTIRE SCORE. Afterwhich, its the next player's trun.
+        </li>
+        <li>
+          (2 dice) If the player rolls a double he looses his ENTIRE SCORE.
+          Afterwhich, its the next player's turn
+        </li>
+      </ul>
     </div>
 
     <script src="app.js"></script>
